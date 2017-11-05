@@ -1,4 +1,4 @@
-package examples.counts.strings;
+package examples.counts.strings.model;
 
 
 public class ResultString {
@@ -11,8 +11,6 @@ public class ResultString {
         this.head = head;
 
     }
-
-
 
     public String toString() {
         return tail.concat(head.toString());

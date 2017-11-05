@@ -1,4 +1,4 @@
-package examples.counts.strings;
+package examples.counts.strings.model;
 
 
 

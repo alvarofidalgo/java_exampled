@@ -1,5 +1,11 @@
 package examples.counts.strings;
 
+import examples.counts.strings.builder.ChangeLetter;
+import examples.counts.strings.builder.KeepLetter;
+import examples.counts.strings.builder.LetterStatus;
+import examples.counts.strings.model.Head;
+import examples.counts.strings.model.ResultString;
+
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -13,18 +19,14 @@ public class ConsecutiveLetterCounter {
                 .reduce(new ResultString("",new Head("",Optional.empty())),
                         (result,head) -> {
                     ResultString res = null;
+                    LetterStatus letterStatus = null;
                     if (head.head.actualLetter.equals(result.head.actualLetter)) {
-                        String tail = result.tail;
-                        Integer size = head.head.ocurrece() + result.head.ocurrece();
-                        Head headS = new Head(head.head.actualLetter,Optional.of(size));
-                        res =  new ResultString(tail, headS);
+                        letterStatus = new KeepLetter();
                     }else {
-                        String tail = result.tail.concat(result.head.toString());
-                        Integer size = head.head.ocurrece();
-                        Head headS = new Head(head.head.actualLetter,Optional.of(size));
-                        res = new ResultString(tail, headS);
+                        letterStatus = new ChangeLetter();
+
                     }
-                    return res;
+                    return letterStatus.build(result,head);
                         });
             return a.toString();
     }
