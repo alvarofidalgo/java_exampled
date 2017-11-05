@@ -3,9 +3,10 @@ package examples.counts.strings;
 
 public class ResultString {
 
-    public final String tail, head;
+    public final String tail;
+    public final Head head;
 
-    public ResultString(String tail,String head) {
+    public ResultString(String tail,Head head) {
         this.tail = tail;
         this.head = head;
 
@@ -14,6 +15,6 @@ public class ResultString {
 
 
     public String toString() {
-        return tail.concat(head);
+        return tail.concat(head.toString());
     }
 }

@@ -1,10 +1,6 @@
 package examples.counts.strings;
 
-import examples.counts.letter.LetterOcurences;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class ConsecutiveLetterCounter {
 
@@ -12,21 +8,21 @@ public class ConsecutiveLetterCounter {
     public String convert(String entry) {
 
         StringWithConsecutive a =Arrays.stream(entry.split(""))
-                .map((b)-> new StringWithConsecutive(new ResultString(b,b),b,1))
-                .reduce(new StringWithConsecutive(new ResultString("",""),"",0),
+                .map((b)-> new StringWithConsecutive(new ResultString(b,new Head(b,1)),b,1))
+                .reduce(new StringWithConsecutive(new ResultString("",new Head("",0)),"",0),
                         (result,head) -> {
 
                     String tail = "";
                     Integer size = 0;
-                    String headS = "";
+                    Head headS = null;
                     if (head.actualLetter.equals(result.actualLetter)) {
                         tail = result.result.tail;
                         size = head.actualSize + result.actualSize;
-                        headS = head.actualLetter.concat(size.toString());
+                        headS = new Head(head.actualLetter,size);
                     }else {
-                        tail = result.result.tail.concat(result.result.head);
+                        tail = result.result.tail.concat(result.result.head.toString());
                         size = head.actualSize;
-                        headS = head.actualLetter.concat(size.toString());
+                        headS = new Head(head.actualLetter,size);
                     }
                     ResultString res =  new ResultString(tail, headS);
                     return new StringWithConsecutive(res, head.actualLetter, size);
