@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="examples.counts.strings.ConsecutiveLetterCounterTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-11-05T17:37:36" hostname="ALVAROs-MacBook-Pro.local" time="0.018">
-  <properties/>
-  <testcase name="when_we_have_two_equals_letters_and_and_other_result_should_be_two_letteres_followed_by_two_and_other_followed_by_one" classname="examples.counts.strings.ConsecutiveLetterCounterTest" time="0.016"/>
-  <testcase name="when_we_have_two_equals_letters_result_should_be_this_letters_followed_by_two" classname="examples.counts.strings.ConsecutiveLetterCounterTest" time="0.001"/>
-  <testcase name="when_we_have_one_letter_result_should_be_this_letter_followed_by_one" classname="examples.counts.strings.ConsecutiveLetterCounterTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
