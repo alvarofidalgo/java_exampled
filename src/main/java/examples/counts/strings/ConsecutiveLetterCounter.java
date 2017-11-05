@@ -12,21 +12,19 @@ public class ConsecutiveLetterCounter {
                 .map((b)-> new ResultString(b,new Head(b, Optional.of(1))))
                 .reduce(new ResultString("",new Head("",Optional.empty())),
                         (result,head) -> {
-
-                    String tail = "";
-                    Head headS = null;
+                    ResultString res = null;
                     if (head.head.actualLetter.equals(result.head.actualLetter)) {
-                        tail = result.tail;
+                        String tail = result.tail;
                         Integer size = head.head.ocurrece() + result.head.ocurrece();
-                        headS = new Head(head.head.actualLetter,Optional.of(size));
+                        Head headS = new Head(head.head.actualLetter,Optional.of(size));
+                        res =  new ResultString(tail, headS);
                     }else {
-                        tail = result.tail.concat(result.head.toString());
+                        String tail = result.tail.concat(result.head.toString());
                         Integer size = head.head.ocurrece();
-                        headS = new Head(head.head.actualLetter,Optional.of(size));
+                        Head headS = new Head(head.head.actualLetter,Optional.of(size));
+                        res = new ResultString(tail, headS);
                     }
-                    ResultString res =  new ResultString(tail, headS);
                     return res;
-
                         });
             return a.toString();
     }
