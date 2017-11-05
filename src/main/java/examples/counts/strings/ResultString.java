@@ -1,8 +1,5 @@
 package examples.counts.strings;
 
-import java.util.concurrent.Callable;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class ResultString {
 
@@ -13,9 +10,6 @@ public class ResultString {
         this.head = head;
 
     }
-
-
-
 
 
 

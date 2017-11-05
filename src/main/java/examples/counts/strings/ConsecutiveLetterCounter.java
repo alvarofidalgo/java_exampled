@@ -16,13 +16,18 @@ public class ConsecutiveLetterCounter {
                 .reduce(new StringWithConsecutive(new ResultString("",""),"",0),
                         (result,head) -> {
 
-                    String tail = result.result.tail.concat(result.result.head);
-                    Integer size = head.actualSize;
+                    String tail = "";
+                    Integer size = 0;
+                    String headS = "";
                     if (head.actualLetter.equals(result.actualLetter)) {
                         tail = result.result.tail;
                         size = head.actualSize + result.actualSize;
+                        headS = head.actualLetter.concat(size.toString());
+                    }else {
+                        tail = result.result.tail.concat(result.result.head);
+                        size = head.actualSize;
+                        headS = head.actualLetter.concat(size.toString());
                     }
-                    String headS = head.actualLetter.concat(size.toString());
                     ResultString res =  new ResultString(tail, headS);
                     return new StringWithConsecutive(res, head.actualLetter, size);
 

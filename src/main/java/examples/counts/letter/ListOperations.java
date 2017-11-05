@@ -20,9 +20,6 @@ public class ListOperations<T>{
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public T mergeElements(BinaryOperator<T> accumulator) {
-        return list.stream().reduce(accumulator).get();
-    }
 
 
 }
