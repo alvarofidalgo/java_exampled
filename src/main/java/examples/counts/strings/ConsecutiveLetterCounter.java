@@ -18,11 +18,11 @@ public class ConsecutiveLetterCounter {
                     Head headS = null;
                     if (head.actualLetter.equals(result.actualLetter)) {
                         tail = result.result.tail;
-                        size = head.result.head.ocurrece.orElse(0) + result.result.head.ocurrece.orElse(0);
+                        size = head.result.head.ocurrece() + result.result.head.ocurrece();
                         headS = new Head(head.actualLetter,Optional.of(size));
                     }else {
                         tail = result.result.tail.concat(result.result.head.toString());
-                        size = head.result.head.ocurrece.orElse(0);
+                        size = head.result.head.ocurrece();
                         headS = new Head(head.actualLetter,Optional.of(size));
                     }
                     ResultString res =  new ResultString(tail, headS);
