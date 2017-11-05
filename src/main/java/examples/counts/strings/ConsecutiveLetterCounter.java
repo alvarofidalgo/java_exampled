@@ -9,8 +9,8 @@ public class ConsecutiveLetterCounter {
     public String convert(String entry) {
 
         StringWithConsecutive a =Arrays.stream(entry.split(""))
-                .map((b)-> new StringWithConsecutive(new ResultString(b,new Head(b, Optional.of(1))),b,1))
-                .reduce(new StringWithConsecutive(new ResultString("",new Head("",Optional.empty())),"",0),
+                .map((b)-> new StringWithConsecutive(new ResultString(b,new Head(b, Optional.of(1))),b))
+                .reduce(new StringWithConsecutive(new ResultString("",new Head("",Optional.empty())),""),
                         (result,head) -> {
 
                     String tail = "";
@@ -18,15 +18,15 @@ public class ConsecutiveLetterCounter {
                     Head headS = null;
                     if (head.actualLetter.equals(result.actualLetter)) {
                         tail = result.result.tail;
-                        size = head.actualSize + result.actualSize;
+                        size = head.result.head.ocurrece.orElse(0) + result.result.head.ocurrece.orElse(0);
                         headS = new Head(head.actualLetter,Optional.of(size));
                     }else {
                         tail = result.result.tail.concat(result.result.head.toString());
-                        size = head.actualSize;
+                        size = head.result.head.ocurrece.orElse(0);
                         headS = new Head(head.actualLetter,Optional.of(size));
                     }
                     ResultString res =  new ResultString(tail, headS);
-                    return new StringWithConsecutive(res, head.actualLetter, size);
+                    return new StringWithConsecutive(res, head.actualLetter);
 
                         });
             return a.result.toString();
