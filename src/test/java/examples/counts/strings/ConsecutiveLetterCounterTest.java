@@ -1,5 +1,7 @@
 package examples.counts.strings;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.Matchers.is;
@@ -8,7 +10,17 @@ import static org.junit.Assert.assertThat;
 
 public class ConsecutiveLetterCounterTest {
 
-    ConsecutiveLetterCounter counter = new examples.counts.strings.ConsecutiveLetterCounter();
+    ConsecutiveLetterCounter counter ;
+
+    @Before
+    public void setUp() {
+        counter = new ConsecutiveLetterCounter();
+    }
+
+    @After
+    public void shutDwon() {
+        counter = null;
+    }
 
     @Test
     public void when_we_have_one_letter_result_should_be_this_letter_followed_by_one() {

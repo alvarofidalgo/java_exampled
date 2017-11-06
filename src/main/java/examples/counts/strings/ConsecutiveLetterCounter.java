@@ -1,38 +1,28 @@
 package examples.counts.strings;
 
-import examples.counts.letter.LetterOcurences;
+import examples.counts.strings.builder.LetterStatus;
+import examples.counts.strings.model.Head;
+import examples.counts.strings.model.ResultString;
+import examples.counts.strings.factorys.LetterStatusFactory;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Optional;
 
 public class ConsecutiveLetterCounter {
 
     //TODO :
     public String convert(String entry) {
 
-        StringWithConsecutive a =Arrays.stream(entry.split(""))
-                .map((b)-> new StringWithConsecutive(new ResultString(b,b),b,1))
-                .reduce(new StringWithConsecutive(new ResultString("",""),"",0),
+        ResultString a =Arrays.stream(entry.split(""))
+                .map((b)-> new ResultString(b,new Head(b, Optional.of(1))))
+                .reduce(new ResultString("",new Head("",Optional.empty())),
                         (result,head) -> {
-
-                    String tail = "";
-                    Integer size = 0;
-                    String headS = "";
-                    if (head.actualLetter.equals(result.actualLetter)) {
-                        tail = result.result.tail;
-                        size = head.actualSize + result.actualSize;
-                        headS = head.actualLetter.concat(size.toString());
-                    }else {
-                        tail = result.result.tail.concat(result.result.head);
-                        size = head.actualSize;
-                        headS = head.actualLetter.concat(size.toString());
-                    }
-                    ResultString res =  new ResultString(tail, headS);
-                    return new StringWithConsecutive(res, head.actualLetter, size);
-
+                    LetterStatusFactory strategy = new LetterStatusFactory(result,head);
+                    LetterStatus letterStatus = strategy.selectStatus(
+                            (last,actual)-> last.actualLetter.equals(actual.actualLetter));
+                    return letterStatus.build(result,head);
                         });
-            return a.result.toString();
+            return a.toString();
     }
 
 }
